@@ -10,7 +10,7 @@ type pokemonInfo = {
 export const Pokedex = () => {
   const [pokemonName, setPokemonName] = useState("");
   const [pokemonInfo, setPokemonInfo] = useState<null | pokemonInfo>(null);
-  const [error, setError] = useState<null | string>(null)
+  const [error, setError] = useState<null | string>(null);
 
   const handleChangePokemon = (e: any) => {
     setPokemonName(e.target.value);
@@ -25,11 +25,11 @@ export const Pokedex = () => {
       .then(function (response: any) {
         console.log(response);
         setPokemonInfo(response.data);
-        setError(null)
+        setError(null);
       })
       .catch(function (error: any) {
-        setPokemonInfo(null)
-        setError(error.response.data)
+        setPokemonInfo(null);
+        setError(error.response.data);
       });
   };
 
@@ -62,31 +62,32 @@ export const Pokedex = () => {
             </form>
             {error && (
               <div className="alert alert-danger my-4" role="alert">
-              Error {error}, {pokemonName}.
-            </div>
+                Error {error}, {pokemonName}.
+              </div>
             )}
-            {pokemonInfo &&(
+            {pokemonInfo && (
               <div className="row justify-content-center mt-4">
                 <div className="col-4 card">
-                <table className="table mt-3  ">
-              <thead>
-                <tr>
-                  <th scope="col">ID</th>
-                  <th scope="col">Nombre</th>
-                  <th scope="col">Experiencia</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <th scope="row">{pokemonInfo ? pokemonInfo.id : ""}</th>
-                  <td>{pokemonInfo ? pokemonInfo.name : ""}</td>
-                  <td>{pokemonInfo ? pokemonInfo.base_experience : ""}</td>
-                </tr>
-              </tbody>
-            </table>
+                  <table className="table mt-3  ">
+                    <thead>
+                      <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Experiencia</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row">{pokemonInfo ? pokemonInfo.id : ""}</th>
+                        <td>{pokemonInfo ? pokemonInfo.name : ""}</td>
+                        <td>
+                          {pokemonInfo ? pokemonInfo.base_experience : ""}
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
               </div>
-              </div>
-              
             )}
           </div>
         </div>
